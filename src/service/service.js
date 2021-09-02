@@ -4,21 +4,17 @@ const  url = "https://firestore.googleapis.com/v1/projects/exointegrebp/database
 export default {
   addCategorie(newCategorie) {
     newCategorie = {
-
-        nom: {
-          stringValue: "légume"
-        },
-        uid: {
-          stringValue: "taugyrihjklz"
-        }
-      }
-
+    fields:
+      {nom:{stringValue:"légume"},
+      uid:{stringValue:"taugyrihjklz"}
+    }
+}   
     console.log(newCategorie)
     return Axios({
 
       url: url + "categorie",
       method: "post",
-      data: newCategorie
+      data: JSON.stringify(newCategorie)
     })
     .then(response => response.data)
   },
