@@ -2,11 +2,23 @@ import Axios from 'axios'
 const  url = "https://firestore.googleapis.com/v1/projects/exointegrebp/databases/(default)/documents/"
 
 export default {
-  addContact(newContact) {
+  addCategorie(newCategorie) {
+    newCategorie = {
+
+        nom: {
+          stringValue: "légume"
+        },
+        uid: {
+          stringValue: "taugyrihjklz"
+        }
+      }
+
+    console.log(newCategorie)
     return Axios({
-      url,
+
+      url: url + "categorie",
       method: "post",
-      data: newContact
+      data: newCategorie
     })
     .then(response => response.data)
   },
