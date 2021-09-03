@@ -1,22 +1,24 @@
 <template>
-  <ul>
-    <li><a href="">{{qui.fields.nom.stringValue}}</a> </li>
-  </ul>
+    <li ><button @click.prevent="showEvent(qui.fields.uid.stringValue)" href="">{{qui.fields.nom.stringValue}}</button> </li>
 </template>
 
 <script>
 export default {
-  name: 'NewEvent',
+  name: 'ListeCategorie',
   props: {
     qui: Object
   },
   data() {
     return{
-      categories:[]
+      categories:[],
+      switchToEvent: false,
+      event:[]
     }
   },
   methods:{
-
+    showEvent(cible) {
+      this.$emit("Home", cible)
+    }
   }
 }
 </script>

@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <ListeCategorie v-for="(categorie, keyIndex) in categories" :key="keyIndex" :qui="categorie"></ListeCategorie>
+      <ul v-if="!switchToEvent">
+        <ListeCategorie  v-for="(categorie, keyIndex) in categories" @showEvent="showEvent" :key="keyIndex" :qui="categorie"></ListeCategorie>
+      </ul>
+      <ul v-else>
+        <ListeCategorie  v-for="(event, keyIndex) in events" :key="keyIndex" :qui="event"></ListeCategorie>
+      </ul>
   </div>
 </template>
 
@@ -12,7 +17,10 @@ export default {
   name: 'Home',
   data() {
     return{
-      categories:[]
+      categories:[],
+      switchToEvent: false,
+      idEvent: "",
+      events:[]
     }
   },
   methods: {
@@ -25,12 +33,15 @@ export default {
           }
         )
         .catch(error => console.log(error))
+    },
+    showEvent(cible) {
+      console.log(cible)
+      service.getEvent(cible) 
+      .then(response => console.log(response))
     }
   },
   created() {
     this.showCategorie()
-    .then(response => this.categories = response)
-    .catch(error => console.log(error))
   },
   components: {
     ListeCategorie

@@ -10,41 +10,36 @@
 
 <script>
 import service from '@/service/service.js'
-
+import uniqid from "uniqid"
 export default {
-  name: 'NewEvent',
+  name: 'NewCategorie',
   props: {
     
   },
   data() {
     return{
-      newEvent: {
-        nom: "",
-        date: Date.now(),
-        desc: "", 
-        prix: "",
-        categorie: ""
-
-      },
-      contact:[]
+      newCategorie: {
+      name:"ahah",
+      uid:""
+    }
     }
   },
   methods:{
-    soumettre() {
-      service.getEvent()
-        .then(
-          response => {
-            this.contacts = response
-            console.log(this.contacts)
-          }
-        )
-        .catch(error => console.log(error))
-    }
+  addCategorie() {
+    this.newCategorie.uid = uniqid()
+    service.addCategorie(this.newCategorie)
+    .then(response => {
+      service.addKey(response)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+      })
+    .catch(error => console.log(error))
+  }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style>
 
 </style>
