@@ -3,9 +3,13 @@
       <ul v-if="!switchToEvent">
         <ListeCategorie  v-for="(categorie, keyIndex) in categories" @show-event="showEvent" :key="keyIndex" :qui="categorie"></ListeCategorie>
       </ul>
-      <ul v-else>
-        <ListeEvent  v-for="(event, keyIndex) in events" :key="keyIndex" :qui="event"></ListeEvent>
-      </ul>
+      <div v-else>
+        <button @click.prevent="switchToEvent=false">back</button>
+        <ul>
+          <ListeEvent  v-for="(event, keyIndex) in events" :key="keyIndex" :qui="event"></ListeEvent>
+        </ul>
+        <button @click.prevent="createEvent()">créer une nouvelle entrée</button>
+      </div>
   </div>
 </template>
 
@@ -20,6 +24,7 @@ export default {
     return{
       categories:[],
       switchToEvent: false,
+      categorieActuelle: "",
       idEvent: "",
       events:[]
     }
@@ -41,11 +46,16 @@ export default {
       {
       this.events= response.filter(event => event.fields.categorie.stringValue === cible)
       this.switchToEvent = true
+      this.categorieActuelle = cible
+      console.log("catégorie actuelle: " + this.categorieActuelle)
       }
       )
       
       console.log(cible)
 
+    },
+    createEvent() {
+      this.switchToCreateEvent = true
     }
   },
   created() {

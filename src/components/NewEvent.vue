@@ -1,17 +1,15 @@
 <template>
   <div class="home">
-    <form action="" @submit.prevent="soumettre">
+    <form action="" @submit.prevent="soumettre(newEvent)">
       <label for="name">name</label>
       <input name="name" v-model="newEvent.nom" type="text">
-      <input name="date" v-model="newEvent.date" value="" type="hidden">
       <label for="desc">description</label>
       <input name="desc" v-model="newEvent.desc" type="text">
       <label for="prix">prix</label>
       <input name="prix" v-model="newEvent.prix" type="text">
        <label for="categorie">categorie</label>
         <select name="categorie" v-model="newEvent.categorie" id="">
-        <option value="fruits">fruits</option>
-        <option value="légumes">légumes</option>
+        <option v-for="(categorie, keyIndex) in qui" :key="keyIndex" value= categorie.fields.uid.stringValue>{{categorie.fields.nom.stringValue}}</option>
       </select>
       <button>créer</button>
     </form>
@@ -23,13 +21,12 @@ import service from '@/service/service.js'
 export default {
   name: 'NewEvent',
   props: {
-    
+    qui: Array
   },
   data() {
     return{
       newEvent: {
         nom: "",
-        date: Date.now(),
         desc: "", 
         prix: "",
         categorie: ""
@@ -39,8 +36,8 @@ export default {
     }
   },
   methods:{
-    soumettre() {
-      service.getEvent()
+    soumettre(newEvent) {
+      service.addEvent(newEvent)
         .then(
           response => {
             this.contacts = response

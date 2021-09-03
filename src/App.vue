@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">créer une nouvelle catégorie</router-link>
+      <router-link to="/about">créer une nouvelle catégorie</router-link> |
+      <router-link to="/event">créer une nouvelle entrée</router-link> 
     </div>
     <router-view/>
   </div>

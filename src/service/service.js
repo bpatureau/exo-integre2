@@ -20,6 +20,42 @@ export default {
     })
     .then(response => response.data)
   },
+  
+  addEvent(newEvent) {
+    console.log(newEvent)
+    newEvent = {
+      fields: {
+        nom: {
+          stringValue: newEvent.nom
+        },
+        description: {
+          stringValue: newEvent.desc
+        },
+        categorie: {
+          stringValue: newEvent.categorie
+        },
+        favori: {
+          booleanValue: false
+        },
+        prix: {
+          doubleValue: parseInt(newEvent.prix)
+        },
+        date: {
+          timestampValue: new Date().getTime()
+        },
+        user: {
+          stringValue: "d7IzilBQRVeitMBULTwy"
+        }
+      }
+}   
+    return Axios({
+      url: url + "projects/exointegrebp/databases/(default)/documents/event",
+      method: "post",
+      data: newEvent
+    })
+    .then(response => response.data)
+  },
+  
   addKey(cible) {
     console.log(cible.name)
    const categorieWithKey = {
