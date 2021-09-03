@@ -14,7 +14,7 @@ export default {
 
       url: url + "categorie",
       method: "post",
-      data: JSON.stringify(newCategorie)
+      data: newCategorie
     })
     .then(response => response.data)
   },
