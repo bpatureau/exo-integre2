@@ -38,10 +38,9 @@ export default {
       data: categorieWithKey,
     })
   },
-  getEvent(id) {
-    console.log("oui")
+  getEvent() {
     return Axios({
-      url: url  + id,
+      url: url  + "projects/exointegrebp/databases/(default)/documents/event",
       method: "get"
     })
     .then(response => response.data.documents)

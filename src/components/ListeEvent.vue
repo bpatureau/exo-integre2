@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'ListeCategorie',
+  name: 'ListeEvent',
   props: {
     qui: Object
   },
@@ -14,7 +14,7 @@ export default {
   },
   methods:{
     showEvent(cible) {
-      this.$emit("show-event", cible)
+      this.$emit("show-inside-event", cible)
     }
   }
 }
