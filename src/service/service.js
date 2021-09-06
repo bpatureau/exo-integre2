@@ -40,11 +40,11 @@ export default {
         prix: {
           doubleValue: parseInt(newEvent.prix)
         },
-        date: {
-          timestampValue: new Date().getTime()
-        },
         user: {
           stringValue: "d7IzilBQRVeitMBULTwy"
+        },
+        uid: {
+          stringValue: newEvent.uid
         }
       }
 }   
@@ -56,7 +56,7 @@ export default {
     .then(response => response.data)
   },
   
-  addKey(cible) {
+  addKeyToCategorie(cible) {
     console.log(cible.name)
    const categorieWithKey = {
     fields: {
@@ -74,6 +74,41 @@ export default {
       data: categorieWithKey,
     })
   },
+    addKeyToEvent(cible) {
+      console.log("cible:")
+      console.log(cible)
+   const eventWithKey = {
+    fields: {
+        nom: {
+          stringValue: cible.fields.nom.stringValue
+        },
+        uid: {
+          stringValue: cible.name
+        },
+        description: {
+          stringValue: cible.fields.description.stringValue
+        },
+        categorie: {
+          stringValue: cible.fields.categorie.stringValue
+        },
+        favori: {
+          booleanValue: false
+        },
+        prix: {
+          doubleValue: parseInt(cible.fields.prix.doubleValue)
+        },
+        user: {
+          stringValue: "d7IzilBQRVeitMBULTwy"
+        }
+    }
+}   
+  console.log(eventWithKey)  
+    return Axios({
+      url: url + cible.name,
+      method: "patch",
+      data: eventWithKey,
+    })
+  },
   getEvent() {
     return Axios({
       url: url  + "projects/exointegrebp/databases/(default)/documents/event",
@@ -87,5 +122,12 @@ export default {
       method: "get"
     })
     .then(response => response.data.documents)
-  }
+  },
+  getOneEvent(cible) {
+    return Axios({
+      url: url + cible,
+      method: "get"
+    })
+    .then(response => response.data)
+  } 
 }

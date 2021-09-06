@@ -3,12 +3,15 @@
       <ul v-if="!switchToEvent">
         <ListeCategorie  v-for="(categorie, keyIndex) in categories" @show-event="showEvent" :key="keyIndex" :qui="categorie"></ListeCategorie>
       </ul>
-      <div v-else>
+      <div v-else-if="!switchInEvent">
         <button @click.prevent="switchToEvent=false">back</button>
         <ul>
-          <ListeEvent  v-for="(event, keyIndex) in events" :key="keyIndex" :qui="event"></ListeEvent>
+          <ListeEvent  v-for="(event, keyIndex) in events" @show-inside-event="showInsideEvent" :key="keyIndex" :qui="event"></ListeEvent>
         </ul>
         <button @click.prevent="createEvent()">créer une nouvelle entrée</button>
+      </div>
+      <div v-else>
+        <SingleEvent :qui="this.soloEvent"></SingleEvent>
       </div>
   </div>
 </template>
@@ -17,6 +20,7 @@
 // @ is an alias to /src
 import ListeCategorie from '@/components/ListeCategorie.vue'
 import ListeEvent from '@/components/ListeEvent.vue'
+import SingleEvent from '@/components/SingleEvent.vue'
 import service from '@/service/service.js'
 export default {
   name: 'Home',
@@ -24,9 +28,12 @@ export default {
     return{
       categories:[],
       switchToEvent: false,
+      switchInEvent: false,
       categorieActuelle: "",
+      eventActuel:"",
       idEvent: "",
-      events:[]
+      events:[],
+      soloEvent: {}
     }
   },
   methods: {
@@ -35,7 +42,6 @@ export default {
         .then(
           response => {
             this.categories = response
-            console.log(this.categories)
           }
         )
         .catch(error => console.log(error))
@@ -47,12 +53,17 @@ export default {
       this.events= response.filter(event => event.fields.categorie.stringValue === cible)
       this.switchToEvent = true
       this.categorieActuelle = cible
-      console.log("catégorie actuelle: " + this.categorieActuelle)
       }
       )
       
-      console.log(cible)
 
+    },
+    showInsideEvent(cible) {
+      this.switchInEvent = true
+      service.getOneEvent(cible)
+      .then(response =>  this.soloEvent = response)
+      .then( console.log(this.soloEvent))
+      .catch(error => console.log(error))
     },
     createEvent() {
       this.switchToCreateEvent = true
@@ -63,7 +74,8 @@ export default {
   },
   components: {
     ListeCategorie,
-    ListeEvent
+    ListeEvent,
+    SingleEvent
   }
 }
 </script>

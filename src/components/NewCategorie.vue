@@ -29,7 +29,7 @@ export default {
     this.newCategorie.uid = uniqid()
     service.addCategorie(this.newCategorie)
     .then(response => {
-      service.addKey(response)
+      service.addKeyToCategorie(response)
       .then(response => console.log(response))
       .catch(error => console.log(error))
       })
