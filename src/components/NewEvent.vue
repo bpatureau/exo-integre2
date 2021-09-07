@@ -34,6 +34,8 @@ export default {
         uid:"",
         image:""
       },
+      rawImg:"",
+      reader:"",
       contact:[]
     }
   },
@@ -47,6 +49,16 @@ export default {
     },
     uploadImage(event){
       console.log(event)
+    let file = event.target.files[0]
+      this.reader = new FileReader()
+      this.reader.onloadend = () => {
+         this.newEvent.image = this.reader.result
+        console.log("row image: ")
+        console.log(this.newEvent.image)
+      }
+      this.reader.readAsDataURL(file)
+      console.log("file: ")
+      console.log(file)
     }
   }
 }

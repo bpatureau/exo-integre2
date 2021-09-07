@@ -22,6 +22,7 @@ export default {
   },
   
   addEvent(newEvent) {
+    console.log("new event")
     console.log(newEvent)
     newEvent = {
       fields: {
@@ -45,6 +46,9 @@ export default {
         },
         uid: {
           stringValue: newEvent.uid
+        },
+        image: {
+          stringValue: newEvent.image
         }
       }
 }   
@@ -99,6 +103,9 @@ export default {
         },
         user: {
           stringValue: "d7IzilBQRVeitMBULTwy"
+        },
+        image: {
+          stringValue: cible.fields.image.stringValue
         }
     }
 }   
@@ -189,5 +196,31 @@ export default {
         console.log('image upload response > ', response)
       }
     )
+  },
+  deleteCategorie(cible) {
+    return Axios({
+      url: url + "projects/exointegrebp/databases/(default)/documents/event",
+      method: "get"
+    })
+    .then(response => {
+      console.log(response)
+      const filteredArray = response.data.documents.filter(event => event.fields.categorie.stringValue === cible)
+      filteredArray.forEach(element => {
+          return Axios({
+          url: url + element.name,
+          method: "delete"
+        })
+      })
+
+    })
+    .then(response => {
+      {
+        console.log(response)
+        return Axios({
+          url: url + cible,
+          method:"delete"
+        })
+      }
+    })
   }
 }

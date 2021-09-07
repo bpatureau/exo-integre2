@@ -1,5 +1,5 @@
 <template>
-    <li ><button @click.prevent="showEvent(qui.fields.uid.stringValue)" href="">{{qui.fields.nom.stringValue}}</button> <button class="button_delete">✖</button> </li>
+    <li ><button @click.prevent="showEvent(qui.fields.uid.stringValue)" href="">{{qui.fields.nom.stringValue}}</button> <button class="button_delete" @click="deleteCategorie(qui.fields.uid.stringValue)">✖</button> </li>
 </template>
 
 <script>
@@ -15,6 +15,9 @@ export default {
   methods:{
     showEvent(cible) {
       this.$emit("show-event", cible)
+    },
+    deleteCategorie(cible){
+      this.$emit("delete-categorie", cible)
     }
   }
 }

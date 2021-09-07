@@ -1,7 +1,7 @@
 <template>
   <div class="home">
       <ul v-if="!switchToEvent">
-        <ListeCategorie  v-for="(categorie, keyIndex) in categories" @show-event="showEvent" :key="keyIndex" :qui="categorie"></ListeCategorie>
+        <ListeCategorie  v-for="(categorie, keyIndex) in categories" @delete-categorie="deleteCategorie" @show-event="showEvent" :key="keyIndex" :qui="categorie"></ListeCategorie>
       </ul>
       <div class="home" v-else-if="!switchInEvent">
         <button @click.prevent="switchToEvent=false">back</button>
@@ -77,6 +77,9 @@ export default {
     },
     closeEvent() {
       this.switchInEvent = false
+    },
+    deleteCategorie(cible) {
+      service.deleteCategorie(cible)
     }
   },
   created() {
@@ -99,6 +102,11 @@ export default {
     color: white;
   }
   .button_delete{
-    color: red;
+    color: rgb(255, 0, 0);
+  }
+  .vignette{
+    height: 30px;
+    width: auto;
+    border-radius: 2rem;
   }
 </style>
