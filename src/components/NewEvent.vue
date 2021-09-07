@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import service from '@/service/service.js'
 export default {
   name: 'NewEvent',
   props: {
@@ -40,21 +39,7 @@ export default {
   },
   methods:{
     soumettre(newEvent) {
-      service.addEvent(newEvent)
-        .then(
-          response => {
-            console.log(response)
-            service.addKeyToEvent(response)
-            .then(
-              response => {
-            this.contacts = response
-            console.log(this.contacts)
-            }
-            )
-
-          }
-        )
-        .catch(error => console.log(error))
+      this.$emit("soumettre", newEvent)
     }
   }
 }

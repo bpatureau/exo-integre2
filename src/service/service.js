@@ -129,5 +129,45 @@ export default {
       method: "get"
     })
     .then(response => response.data)
-  } 
+  },
+  editEvent(edition, cible) {
+    console.log(cible)
+    edition = {
+        fields: {
+            nom: {
+              stringValue: edition.fields.nom
+            },
+            uid: {
+              stringValue: cible
+            },
+            description: {
+              stringValue: edition.fields.description
+            },
+            categorie: {
+              stringValue: edition.fields.categorie
+            },
+            favori: {
+              booleanValue: false
+            },
+            prix: {
+              doubleValue: parseInt(edition.fields.prix)
+            },
+            user: {
+              stringValue: "d7IzilBQRVeitMBULTwy"
+            }
+        }  
+    }
+    console.log()
+    return Axios({
+      url: url + cible,
+      method: "patch",
+      data: edition
+    })
+  },
+  deleteEvent(cible) {
+    return Axios({
+      url: url + cible,
+      method: "delete"
+    })
+  }
 }

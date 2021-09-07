@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <form @submit.prevent="addCategorie" action="">
+    <form @submit.prevent="addCategorie(newCategorie)" action="">
       <label for="name">name</label>
       <input name="name" v-model.lazy.trim="newCategorie.name" type="text">
       <button>créer</button>
@@ -9,8 +9,7 @@
 </template>
 
 <script>
-import service from '@/service/service.js'
-import uniqid from "uniqid"
+
 export default {
   name: 'NewCategorie',
   props: {
@@ -25,15 +24,8 @@ export default {
     }
   },
   methods:{
-  addCategorie() {
-    this.newCategorie.uid = uniqid()
-    service.addCategorie(this.newCategorie)
-    .then(response => {
-      service.addKeyToCategorie(response)
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
-      })
-    .catch(error => console.log(error))
+  addCategorie(newCategorie) {
+    this.$emit("add-categorie", newCategorie)
   }
   }
 }

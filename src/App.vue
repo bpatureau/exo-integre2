@@ -24,10 +24,12 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #96A7AF;
+;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #3DD598;
+;
     }
   }
 }

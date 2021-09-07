@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <NewEvent :qui="categories"></NewEvent>
+    <NewEvent :qui="categories" @soumettre="soumettre"></NewEvent>
   </div>
 </template>
 
@@ -25,6 +25,23 @@ methods: {
           response => {
             this.categories = response
             console.log(this.categories)
+          }
+        )
+        .catch(error => console.log(error))
+    },
+    soumettre(newEvent) {
+      service.addEvent(newEvent)
+        .then(
+          response => {
+            console.log(response)
+            service.addKeyToEvent(response)
+            .then(
+              response => {
+            this.contacts = response
+            console.log(this.contacts)
+            }
+            )
+
           }
         )
         .catch(error => console.log(error))

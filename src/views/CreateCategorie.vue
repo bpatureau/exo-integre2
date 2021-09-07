@@ -1,11 +1,12 @@
 <template>
   <div class="about">
-    <NewCategorie></NewCategorie>
+    <NewCategorie @add-categorie="addCategorie"></NewCategorie>
   </div>
 </template>
 
 <script>
 import NewCategorie from "@/components/NewCategorie.vue"
+import service from "@/service/service.js"
 export default ({
 name: "CreateCategorie",
 data() {
@@ -17,7 +18,15 @@ data() {
   }
 },
 methods: {
-
+    addCategorie(newCategorie) {
+    service.addCategorie(newCategorie)
+    .then(response => {
+      service.addKeyToCategorie(response)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+      })
+    .catch(error => console.log(error))
+  }
 },
 components:{
   NewCategorie

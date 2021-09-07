@@ -3,15 +3,14 @@
       <ul v-if="!switchToEvent">
         <ListeCategorie  v-for="(categorie, keyIndex) in categories" @show-event="showEvent" :key="keyIndex" :qui="categorie"></ListeCategorie>
       </ul>
-      <div v-else-if="!switchInEvent">
+      <div class="home" v-else-if="!switchInEvent">
         <button @click.prevent="switchToEvent=false">back</button>
         <ul>
-          <ListeEvent  v-for="(event, keyIndex) in events" @show-inside-event="showInsideEvent" :key="keyIndex" :qui="event"></ListeEvent>
+          <ListeEvent  v-for="(event, keyIndex) in events" @show-inside-event="showInsideEvent" @delete-event="deleteEvent" :key="keyIndex" :qui="event"></ListeEvent>
         </ul>
-        <button @click.prevent="createEvent()">créer une nouvelle entrée</button>
       </div>
-      <div v-else>
-        <SingleEvent :qui="this.soloEvent"></SingleEvent>
+      <div class="home" v-else>
+        <SingleEvent :qui="this.soloEvent" :categories="this.categories" @edit-event="editEvent" @close-event="closeEvent"></SingleEvent>
       </div>
   </div>
 </template>
@@ -58,6 +57,14 @@ export default {
       
 
     },
+    deleteEvent(cible){
+      service.deleteEvent(cible)
+      .then(response => console.log(response))
+    },
+      editEvent(edition, emplacement) {
+        service.editEvent(edition, emplacement)
+        .then(response=> console.log(response))
+    },
     showInsideEvent(cible) {
       this.switchInEvent = true
       service.getOneEvent(cible)
@@ -67,6 +74,9 @@ export default {
     },
     createEvent() {
       this.switchToCreateEvent = true
+    },
+    closeEvent() {
+      this.switchInEvent = false
     }
   },
   created() {
@@ -79,3 +89,13 @@ export default {
   }
 }
 </script>
+
+<style>
+  body {
+    background: linear-gradient(138.13deg, #22343C 25.87%, #1F2E35 100%);
+;
+  }
+  p, h2, label{
+    color: white;
+  }
+</style>
