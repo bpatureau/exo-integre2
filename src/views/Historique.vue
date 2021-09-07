@@ -22,7 +22,7 @@ components:{
 },
 created() {
   service.getEvent()
-  .then(response =>  this.allHistorique = response.sort((a,b)=>a[createTime].localeCompare(b[createTime])))
+  //.then(response =>  this.allHistorique = response.sort((a,b)=>a[].localeCompare(b[])))
   console.log(this.allHistorique)
 }
 })
