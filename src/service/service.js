@@ -169,5 +169,25 @@ export default {
       url: url + cible,
       method: "delete"
     })
+  },
+  uploadImage(event) {
+    let data = new FormData()
+    data.append('name', 'my-picture')
+    data.append('file', event)
+    let config = {
+      header : {
+        'Content-Type' : 'image/png'
+      }
+    }
+    return Axios({
+      url: url ,
+      method: "put", 
+      data,
+      config}
+    ).then(
+      response => {
+        console.log('image upload response > ', response)
+      }
+    )
   }
 }

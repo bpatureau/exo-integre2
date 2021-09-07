@@ -98,4 +98,7 @@ export default {
   p, h2, label{
     color: white;
   }
+  .button_delete{
+    color: red;
+  }
 </style>

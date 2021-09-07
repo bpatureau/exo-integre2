@@ -7,6 +7,8 @@
       <input name="desc" v-model="newEvent.desc" type="text">
       <label for="prix">prix</label>
       <input name="prix" v-model="newEvent.prix" type="text">
+      <label for="image">image</label>
+      <input type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
        <label for="categorie">categorie</label>
         <select name="categorie" v-model="newEvent.categorie" id="">
         <option v-for="(categorie, keyIndex) in qui" :value="categorie.fields.uid.stringValue" :key="keyIndex" >{{categorie.fields.nom.stringValue}}</option>
@@ -29,7 +31,8 @@ export default {
         desc: "", 
         prix: "",
         categorie: "",
-        uid:""
+        uid:"",
+        image:""
       },
       contact:[]
     }
@@ -39,7 +42,11 @@ export default {
   },
   methods:{
     soumettre(newEvent) {
+
       this.$emit("soumettre", newEvent)
+    },
+    uploadImage(event){
+      console.log(event)
     }
   }
 }

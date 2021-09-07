@@ -1,5 +1,5 @@
 <template>
-    <li ><button @click.prevent="showEvent(qui.fields.uid.stringValue)" href="">{{qui.fields.nom.stringValue}}</button> </li>
+    <li ><button @click.prevent="showEvent(qui.fields.uid.stringValue)" href="">{{qui.fields.nom.stringValue}}</button> <button class="button_delete">✖</button> </li>
 </template>
 
 <script>

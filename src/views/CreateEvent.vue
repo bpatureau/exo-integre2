@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <NewEvent :qui="categories" @soumettre="soumettre"></NewEvent>
+    <NewEvent :qui="categories" @soumettre="soumettre" @upload-image="uploadImage"></NewEvent>
   </div>
 </template>
 
