@@ -33,12 +33,10 @@ methods: {
       service.addEvent(newEvent)
         .then(
           response => {
-            console.log(response)
             service.addKeyToEvent(response)
             .then(
               response => {
             this.contacts = response
-            console.log(this.contacts)
             }
             )
 
@@ -53,7 +51,6 @@ created() {
         .then(
           response => {
             this.categories = response
-            console.log(this.categories)
           }
         )
         .catch(error => console.log(error))
@@ -63,4 +60,14 @@ components:{
 }
 })
 </script>
-
+<style>
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-input{
+    width: 50%;
+  }
+</style>

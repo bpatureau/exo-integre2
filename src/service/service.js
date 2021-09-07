@@ -79,8 +79,6 @@ export default {
     })
   },
     addKeyToEvent(cible) {
-      console.log("cible:")
-      console.log(cible)
    const eventWithKey = {
     fields: {
         nom: {
@@ -108,8 +106,7 @@ export default {
           stringValue: cible.fields.image.stringValue
         }
     }
-}   
-  console.log(eventWithKey)  
+}     
     return Axios({
       url: url + cible.name,
       method: "patch",
@@ -138,7 +135,6 @@ export default {
     .then(response => response.data)
   },
   editEvent(edition, cible) {
-    console.log(cible)
     edition = {
         fields: {
             nom: {
@@ -164,7 +160,6 @@ export default {
             }
         }  
     }
-    console.log()
     return Axios({
       url: url + cible,
       method: "patch",
@@ -203,7 +198,6 @@ export default {
       method: "get"
     })
     .then(response => {
-      console.log(response)
       const filteredArray = response.data.documents.filter(event => event.fields.categorie.stringValue === cible)
       filteredArray.forEach(element => {
           return Axios({
@@ -214,8 +208,8 @@ export default {
 
     })
     .then(response => {
+      console.log(response)
       {
-        console.log(response)
         return Axios({
           url: url + cible,
           method:"delete"

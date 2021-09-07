@@ -1,5 +1,6 @@
 <template>
 <div v-if="!editorOpen">
+  <img src="qui.fields.image.stringValue" alt="">
   <button @click="openEditor">edit</button><button @click="closeEvent">back</button>
   <h2>{{qui.fields.nom.stringValue}}</h2>
   <p>{{qui.createTime}}</p>

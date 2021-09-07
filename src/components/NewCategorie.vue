@@ -2,7 +2,7 @@
   <div class="home">
     <form @submit.prevent="addCategorie(newCategorie)" action="">
       <label for="name">name</label>
-      <input name="name" v-model.lazy.trim="newCategorie.name" type="text">
+      <input class="form-input" name="name" v-model.lazy.trim="newCategorie.name" type="text">
       <button>créer</button>
     </form>
   </div>

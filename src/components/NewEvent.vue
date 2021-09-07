@@ -2,15 +2,15 @@
   <div class="home">
     <form action="" @submit.prevent="soumettre(newEvent)">
       <label for="name">name</label>
-      <input name="name" v-model="newEvent.nom" type="text">
+      <input class="form-input" name="name" v-model="newEvent.nom" type="text">
       <label for="desc">description</label>
-      <input name="desc" v-model="newEvent.desc" type="text">
+      <input class="form-input" name="desc" v-model="newEvent.desc" type="text">
       <label for="prix">prix</label>
-      <input name="prix" v-model="newEvent.prix" type="text">
+      <input class="form-input" name="prix" v-model="newEvent.prix" type="text">
       <label for="image">image</label>
-      <input type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
+      <input class="form-input" type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
        <label for="categorie">categorie</label>
-        <select name="categorie" v-model="newEvent.categorie" id="">
+        <select class="form-input" name="categorie" v-model="newEvent.categorie" id="">
         <option v-for="(categorie, keyIndex) in qui" :value="categorie.fields.uid.stringValue" :key="keyIndex" >{{categorie.fields.nom.stringValue}}</option>
       </select>
       <button>créer</button>

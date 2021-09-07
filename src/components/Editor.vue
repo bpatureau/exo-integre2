@@ -2,13 +2,13 @@
 <div>
     <form action="" @submit.prevent="edit(editedEvent, emplacement)">
       <label for="name">name</label>
-      <input name="name" v-model="editedEvent.fields.nom" type="text">
+      <input class="form-input" name="name" v-model="editedEvent.fields.nom" type="text">
       <label for="desc">description</label>
-      <input name="desc" v-model="editedEvent.fields.description" type="text">
+      <input class="form-input" name="desc" v-model="editedEvent.fields.description" type="text">
       <label for="prix">prix</label>
-      <input name="prix" v-model="editedEvent.fields.prix" type="text">
+      <input class="form-input" name="prix" v-model="editedEvent.fields.prix" type="text">
        <label for="categorie">categorie</label>
-        <select name="categorie" v-model="editedEvent.fields.categorie" id="">
+        <select class="form-input" name="categorie" v-model="editedEvent.fields.categorie" id="">
         <option v-for="(categorie, keyIndex) in categories" :value="categorie.fields.uid.stringValue" :key="keyIndex" >{{categorie.fields.nom.stringValue}}</option>
       </select>
       <button>créer</button>

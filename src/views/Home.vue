@@ -54,16 +54,19 @@ export default {
       this.categorieActuelle = cible
       }
       )
+      .catch(error => console.log(error))
       
 
     },
     deleteEvent(cible){
       service.deleteEvent(cible)
       .then(response => console.log(response))
+      .catch(error => console.log(error))
     },
       editEvent(edition, emplacement) {
         service.editEvent(edition, emplacement)
         .then(response=> console.log(response))
+        .catch(error => console.log(error))
     },
     showInsideEvent(cible) {
       this.switchInEvent = true
@@ -108,5 +111,14 @@ export default {
     height: 30px;
     width: auto;
     border-radius: 2rem;
+  }
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-input{
+    width: 50%;
   }
 </style>

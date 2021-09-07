@@ -41,6 +41,7 @@ created() {
     .catch(error => console.log(error))
   service.getEvent()
   .then(response =>  this.allHistorique = response)
+  .catch(error => console.log(error))
   console.log(this.allHistorique)
 }
 })

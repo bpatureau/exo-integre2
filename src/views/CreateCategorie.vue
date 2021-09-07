@@ -33,4 +33,14 @@ components:{
 }
 })
 </script>
-
+<style>
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-input{
+    width: 50%;
+  }
+</style>
